@@ -3,205 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍽️ AI 저녁 메뉴 추천 - 오늘 뭐 먹지?</title>
+    <title>📰 DAYNEW</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="app-container">
+    <div class="container">
         <!-- 헤더 -->
         <header class="header">
-            <div class="header-content">
-                <h1 class="logo">
-                    <i class="fas fa-utensils"></i>
-                    AI 저녁 추천
-                </h1>
-                <div class="weather-info" id="weatherInfo">
-                    <i class="fas fa-cloud-sun"></i>
-                    <span id="weatherText">날씨 로딩중...</span>
-                </div>
-            </div>
+            <h1>📰 DAYNEW</h1>
+            <p>당신만의 맞춤 뉴스 요약 서비스</p>
         </header>
 
-        <!-- 메인 컨텐츠 -->
-        <main class="main-content">
-            <!-- 입력 섹션 -->
-            <section class="input-section">
-                <div class="input-container">
-                    <h2>오늘 저녁 뭐 먹을까요? 🤔</h2>
-                    
-                    
-                    <div class="input-group">
-                        <input type="text" id="userInput" placeholder="'오늘 저녁 메뉴 추천해줘' 라고 입력해보세요!" 
-                               value="오늘 저녁 메뉴 추천해줘">
-                        <button id="recommendBtn" class="recommend-btn">
-                            <i class="fas fa-magic"></i>
-                            추천받기
-                        </button>
-                    </div>
-                    
-                </div>
-            </section>
-
-            <!-- 로딩 애니메이션 -->
-            <section class="loading-section" id="loadingSection" style="display: none;">
-                <div class="loading-container">
-                    <div class="lottery-machine">
-                        <div class="machine-body">
-                            <div class="spinning-balls">
-                                <div class="ball" data-menu="김치찌개">김치찌개</div>
-                                <div class="ball" data-menu="불고기">불고기</div>
-                                <div class="ball" data-menu="치킨">치킨</div>
-                                <div class="ball" data-menu="피자">피자</div>
-                                <div class="ball" data-menu="라면">라면</div>
-                                <div class="ball" data-menu="초밥">초밥</div>
-                                <div class="ball" data-menu="떡볶이">떡볶이</div>
-                                <div class="ball" data-menu="짜장면">짜장면</div>
-                                <div class="ball" data-menu="라멘">라멘</div>
-                                <div class="ball" data-menu="스테이크">스테이크</div>
-                                <div class="ball" data-menu="삼겹살">삼겹살</div>
-                                <div class="ball" data-menu="족발">족발</div>
-                                <div class="ball" data-menu="햄버거">햄버거</div>
-                                <div class="ball" data-menu="보쌈">보쌈</div>
-                                <div class="ball" data-menu="중화요리">중화요리</div>
-                                <div class="ball" data-menu="일식">일식</div>
-                                <div class="ball" data-menu="순대">순대</div>
-                                <div class="ball" data-menu="닭볶음탕">닭볶음탕</div>
-                                <div class="ball" data-menu="갈비">갈비</div>
-                                <div class="ball" data-menu="도시락">도시락</div>
-                            </div>
-                        </div>
-                        <div class="machine-text">AI가 분석 중입니다...</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 추천 결과 섹션 -->
-            <section class="result-section" id="resultSection" style="display: none;">
-                <div class="result-container">
-                    <h2 class="result-title">🎯 오늘의 추천 메뉴 TOP 3</h2>
-                    
-                    <!-- TOP 3 메뉴 -->
-                    <div class="menu-cards">
-                        <div class="menu-card rank-1" id="menu1">
-                            <div class="rank-badge">1위</div>
-                            <div class="menu-name" id="menu1Name">-</div>
-                            <div class="menu-score" id="menu1Score">점수: -</div>
-                            <div class="menu-reason" id="menu1Reason">-</div>
-                        </div>
-                        <div class="menu-card rank-2" id="menu2">
-                            <div class="rank-badge">2위</div>
-                            <div class="menu-name" id="menu2Name">-</div>
-                            <div class="menu-score" id="menu2Score">점수: -</div>
-                            <div class="menu-reason" id="menu2Reason">-</div>
-                        </div>
-                        <div class="menu-card rank-3" id="menu3">
-                            <div class="rank-badge">3위</div>
-                            <div class="menu-name" id="menu3Name">-</div>
-                            <div class="menu-score" id="menu3Score">점수: -</div>
-                            <div class="menu-reason" id="menu3Reason">-</div>
+        <!-- 설정 섹션 -->
+        <section class="settings-section">
+            <div class="settings-container">
+                <h3>⚙️ 관심사 설정</h3>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label for="interests">관심 카테고리:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="technology"> IT/기술</label>
+                            <label><input type="checkbox" value="economy"> 경제</label>
+                            <label><input type="checkbox" value="sports"> 스포츠</label>
+                            <label><input type="checkbox" value="politics"> 정치</label>
+                            <label><input type="checkbox" value="entertainment"> 연예</label>
                         </div>
                     </div>
-
-                    <!-- AI 운세 및 멘트 -->
-                    <div class="ai-fortune">
-                        <div class="fortune-header">
-                            <i class="fas fa-crystal-ball"></i>
-                            <h3>AI 운세 & 멘트</h3>
-                        </div>
-                        <div class="fortune-content" id="fortuneContent">
-                            <div class="fortune-text" id="fortuneText">-</div>
-                            <div class="fortune-advice" id="fortuneAdvice">-</div>
-                        </div>
-                    </div>
-
-                    <!-- 다시 추천받기 버튼 -->
-                    <button class="retry-btn" onclick="resetRecommendation()">
-                        <i class="fas fa-redo"></i>
-                        다시 추천받기
-                    </button>
-                </div>
-            </section>
-
-            <!-- 사용자 설정 섹션 -->
-            <section class="settings-section">
-                <div class="settings-container">
-                    <h3>🍽️ 상세 설정</h3>
-                    <div class="settings-grid">
-                        <div class="setting-item">
-                            <label>칼로리 선호도</label>
-                            <select id="caloriePreference">
-                                <option value="low">낮음 (500kcal 이하)</option>
-                                <option value="medium" selected>보통 (500-800kcal)</option>
-                                <option value="high">높음 (800kcal 이상)</option>
-                            </select>
-                        </div>
-                        <div class="setting-item">
-                            <label>최근에 먹은 메뉴 (쉼표로 구분)</label>
-                            <input type="text" id="recentMenus" placeholder="예: 김치찌개, 불고기, 치킨">
-                        </div>
-                        <div class="setting-item">
-                            <label>오늘 날씨</label>
-                            <select id="weatherInput">
-                                <option value="sunny">☀️ 맑음</option>
-                                <option value="cloudy">☁️ 흐림</option>
-                                <option value="rainy">🌧️ 비</option>
-                                <option value="cold">❄️ 추움</option>
-                                <option value="hot">🔥 더움</option>
-                            </select>
-                        </div>
-                        <div class="setting-item">
-                            <label>매운거 잘 먹나요?</label>
-                            <select id="spicyLevel">
-                                <option value="no">🌶️ 안 먹어요</option>
-                                <option value="mild">🌶️🌶️ 조금만</option>
-                                <option value="medium">🌶️🌶️🌶️ 보통</option>
-                                <option value="high">🌶️🌶️🌶️🌶️ 잘 먹어요</option>
-                                <option value="extreme">🌶️🌶️🌶️🌶️🌶️ 매우 잘 먹어요</option>
-                            </select>
-                        </div>
-                        <div class="setting-item">
-                            <label>몇 명이서 드시나요?</label>
-                            <select id="peopleCount">
-                                <option value="1">1명</option>
-                                <option value="2" selected>2명</option>
-                                <option value="3">3명</option>
-                                <option value="4">4명</option>
-                                <option value="5">5명 이상</option>
-                            </select>
-                        </div>
-                        <div class="setting-item">
-                            <label>어디서 드시나요?</label>
-                            <select id="eatingPlace">
-                                <option value="home">🏠 집에서</option>
-                                <option value="restaurant">🍽️ 식당에서</option>
-                                <option value="delivery">🚚 배달</option>
-                                <option value="takeout">🥡 포장</option>
-                                <option value="convenience">🏪 편의점</option>
-                            </select>
-                        </div>
-                        <div class="setting-item">
-                            <label>오늘 기분은?</label>
-                            <select id="mood">
-                                <option value="happy">😊 기분 좋음</option>
-                                <option value="normal">😐 보통</option>
-                                <option value="tired">😴 피곤함</option>
-                                <option value="stressed">😤 스트레스</option>
-                                <option value="celebrating">🎉 축하할 일</option>
-                            </select>
+                    <div class="setting-item">
+                        <label for="keywords">키워드 검색 (쉼표로 구분):</label>
+                        <div class="search-container">
+                            <input type="text" id="keywords" placeholder="예: AI, 코인, 축구, 부동산">
+                            <button class="search-btn" onclick="searchByKeywords()">🔍 검색</button>
                         </div>
                     </div>
                 </div>
-            </section>
-        </main>
+                <button class="update-btn" onclick="updateNews()">📰 뉴스 업데이트</button>
+            </div>
+        </section>
+
+        <!-- 로딩 섹션 -->
+        <section class="loading-section" id="loadingSection" style="display: none;">
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>뉴스를 수집하고 요약 중입니다...</p>
+            </div>
+        </section>
+
+        <!-- 뉴스 섹션 -->
+        <section class="news-section" id="newsSection">
+            <div class="news-header">
+                <h2>🔥 오늘의 핫뉴스</h2>
+                <div class="news-controls">
+                    <button class="refresh-btn" onclick="updateNews()">🔄 새로고침</button>
+                    <span class="last-update">마지막 업데이트: <span id="lastUpdate">-</span></span>
+                </div>
+            </div>
+            
+            <div class="news-grid" id="newsGrid">
+                <!-- 뉴스 카드들이 여기에 동적으로 추가됩니다 -->
+                <div class="news-card placeholder">
+                    <div class="news-icon">📰</div>
+                    <h3>뉴스를 불러오는 중...</h3>
+                    <p>관심사 설정 후 '뉴스 업데이트' 버튼을 눌러주세요!</p>
+                </div>
+            </div>
+        </section>
 
         <!-- 푸터 -->
         <footer class="footer">
-            <p>&copy; 2025 AI 저녁 메뉴 추천. Made with ❤️ and AI</p>
+            <p>&copy; 2025 DAYNEW. Made with ❤️</p>
         </footer>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+

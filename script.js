@@ -1,643 +1,485 @@
-// 메뉴 데이터베이스
-const menuDatabase = {
-    korean: [
-        { name: "김치찌개", calories: 350, weather: ["cold", "rainy"], lastEaten: 0, preference: 0.8, season: "all", spicy: "high", place: ["home", "restaurant"], people: [1, 2, 3, 4, 5] },
-        { name: "불고기", calories: 650, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.9, season: "all", spicy: "no", place: ["home", "restaurant"], people: [2, 3, 4, 5] },
-        { name: "비빔밥", calories: 500, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.7, season: "spring", spicy: "mild", place: ["home", "restaurant", "delivery"], people: [1, 2, 3, 4, 5] },
-        { name: "된장찌개", calories: 300, weather: ["cold", "rainy"], lastEaten: 0, preference: 0.6, season: "all", spicy: "no", place: ["home", "restaurant"], people: [1, 2, 3, 4, 5] },
-        { name: "갈비탕", calories: 800, weather: ["cold"], lastEaten: 0, preference: 0.85, season: "winter", spicy: "no", place: ["restaurant"], people: [1, 2, 3, 4, 5] },
-        { name: "닭볶음탕", calories: 600, weather: ["cold", "cloudy"], lastEaten: 0, preference: 0.75, season: "all", spicy: "high", place: ["home", "restaurant"], people: [2, 3, 4, 5] },
-        { name: "삼겹살", calories: 900, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.95, season: "all", spicy: "no", place: ["restaurant"], people: [2, 3, 4, 5] },
-        { name: "냉면", calories: 400, weather: ["hot", "sunny"], lastEaten: 0, preference: 0.8, season: "summer", spicy: "mild", place: ["restaurant", "delivery"], people: [1, 2, 3, 4, 5] },
-        { name: "족발", calories: 700, weather: ["cloudy"], lastEaten: 0, preference: 0.7, season: "all", spicy: "no", place: ["restaurant", "delivery", "takeout"], people: [2, 3, 4, 5] },
-        { name: "보쌈", calories: 450, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.65, season: "all", spicy: "no", place: ["restaurant"], people: [2, 3, 4, 5] },
-        { name: "떡볶이", calories: 400, weather: ["cloudy", "rainy"], lastEaten: 0, preference: 0.8, season: "all", spicy: "extreme", place: ["restaurant", "delivery", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "순두부찌개", calories: 350, weather: ["cold", "rainy"], lastEaten: 0, preference: 0.7, season: "all", spicy: "high", place: ["home", "restaurant"], people: [1, 2, 3, 4, 5] }
-    ],
-    chinese: [
-        { name: "짜장면", calories: 600, weather: ["cloudy", "rainy"], lastEaten: 0, preference: 0.8, season: "all", spicy: "no", place: ["restaurant", "delivery"], people: [1, 2, 3, 4, 5] },
-        { name: "짬뽕", calories: 550, weather: ["cold", "rainy"], lastEaten: 0, preference: 0.75, season: "all", spicy: "high", place: ["restaurant", "delivery"], people: [1, 2, 3, 4, 5] },
-        { name: "탕수육", calories: 800, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.9, season: "all", spicy: "no", place: ["restaurant"], people: [2, 3, 4, 5] },
-        { name: "볶음밥", calories: 500, weather: ["sunny"], lastEaten: 0, preference: 0.7, season: "all", spicy: "mild", place: ["restaurant", "delivery"], people: [1, 2, 3, 4, 5] },
-        { name: "마파두부", calories: 400, weather: ["cloudy"], lastEaten: 0, preference: 0.6, season: "all", spicy: "high", place: ["restaurant", "delivery"], people: [1, 2, 3, 4, 5] },
-        { name: "깐풍기", calories: 700, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.85, season: "all", spicy: "high", place: ["restaurant"], people: [2, 3, 4, 5] }
-    ],
-    japanese: [
-        { name: "초밥", calories: 500, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.9, season: "all", spicy: "no", place: ["restaurant"], people: [1, 2, 3, 4, 5] },
-        { name: "라멘", calories: 600, weather: ["cold", "rainy"], lastEaten: 0, preference: 0.8, season: "winter", spicy: "mild", place: ["restaurant"], people: [1, 2, 3, 4, 5] },
-        { name: "우동", calories: 450, weather: ["cold", "rainy"], lastEaten: 0, preference: 0.7, season: "winter", spicy: "no", place: ["restaurant", "delivery"], people: [1, 2, 3, 4, 5] },
-        { name: "돈카츠", calories: 750, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.85, season: "all", spicy: "no", place: ["restaurant"], people: [1, 2, 3, 4, 5] },
-        { name: "텐푸라", calories: 550, weather: ["sunny"], lastEaten: 0, preference: 0.75, season: "all", spicy: "no", place: ["restaurant"], people: [1, 2, 3, 4, 5] },
-        { name: "규동", calories: 650, weather: ["cloudy"], lastEaten: 0, preference: 0.8, season: "all", spicy: "no", place: ["restaurant", "delivery"], people: [1, 2, 3, 4, 5] }
-    ],
-    western: [
-        { name: "피자", calories: 800, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.9, season: "all", spicy: "no", place: ["restaurant", "delivery", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "파스타", calories: 600, weather: ["cloudy", "rainy"], lastEaten: 0, preference: 0.8, season: "all", spicy: "mild", place: ["restaurant", "delivery"], people: [1, 2, 3, 4, 5] },
-        { name: "스테이크", calories: 900, weather: ["sunny"], lastEaten: 0, preference: 0.95, season: "all", spicy: "no", place: ["restaurant"], people: [1, 2, 3, 4, 5] },
-        { name: "햄버거", calories: 700, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.85, season: "all", spicy: "mild", place: ["restaurant", "delivery", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "샐러드", calories: 300, weather: ["hot", "sunny"], lastEaten: 0, preference: 0.6, season: "summer", spicy: "no", place: ["restaurant", "delivery"], people: [1, 2, 3, 4, 5] },
-        { name: "리조또", calories: 550, weather: ["cloudy"], lastEaten: 0, preference: 0.75, season: "all", spicy: "mild", place: ["restaurant", "delivery"], people: [1, 2, 3, 4, 5] }
-    ],
-    convenience: [
-        { name: "라면", calories: 500, weather: ["cold", "rainy"], lastEaten: 0, preference: 0.8, season: "all", spicy: "high", place: ["convenience", "home"], people: [1, 2, 3, 4, 5] },
-        { name: "김밥", calories: 300, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.7, season: "all", spicy: "no", place: ["convenience", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "도시락", calories: 600, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.75, season: "all", spicy: "mild", place: ["convenience", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "삼각김밥", calories: 200, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.6, season: "all", spicy: "no", place: ["convenience", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "핫도그", calories: 400, weather: ["cold", "cloudy"], lastEaten: 0, preference: 0.7, season: "all", spicy: "mild", place: ["convenience", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "샌드위치", calories: 350, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.65, season: "all", spicy: "no", place: ["convenience", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "튀김", calories: 450, weather: ["cloudy", "rainy"], lastEaten: 0, preference: 0.8, season: "all", spicy: "mild", place: ["convenience", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "떡볶이", calories: 400, weather: ["cloudy", "rainy"], lastEaten: 0, preference: 0.8, season: "all", spicy: "extreme", place: ["convenience", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "순대", calories: 300, weather: ["cold", "cloudy"], lastEaten: 0, preference: 0.7, season: "all", spicy: "high", place: ["convenience", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "치킨", calories: 600, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.85, season: "all", spicy: "mild", place: ["convenience", "takeout"], people: [1, 2, 3, 4, 5] }
-    ],
-    delivery: [
-        { name: "치킨", calories: 800, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.95, season: "all", spicy: "mild", place: ["delivery", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "피자", calories: 900, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.9, season: "all", spicy: "no", place: ["delivery", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "족발", calories: 700, weather: ["cloudy"], lastEaten: 0, preference: 0.85, season: "all", spicy: "no", place: ["delivery", "takeout"], people: [2, 3, 4, 5] },
-        { name: "햄버거", calories: 750, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.88, season: "all", spicy: "mild", place: ["delivery", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "보쌈", calories: 650, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.8, season: "all", spicy: "no", place: ["delivery", "takeout"], people: [2, 3, 4, 5] },
-        { name: "중화요리", calories: 600, weather: ["cloudy", "rainy"], lastEaten: 0, preference: 0.85, season: "all", spicy: "high", place: ["delivery", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "일식", calories: 550, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.9, season: "all", spicy: "no", place: ["delivery", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "떡볶이", calories: 400, weather: ["cloudy", "rainy"], lastEaten: 0, preference: 0.8, season: "all", spicy: "extreme", place: ["delivery", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "순대", calories: 350, weather: ["cold", "cloudy"], lastEaten: 0, preference: 0.75, season: "all", spicy: "high", place: ["delivery", "takeout"], people: [1, 2, 3, 4, 5] },
-        { name: "닭볶음탕", calories: 600, weather: ["cold", "cloudy"], lastEaten: 0, preference: 0.8, season: "all", spicy: "high", place: ["delivery", "takeout"], people: [2, 3, 4, 5] },
-        { name: "삼겹살", calories: 900, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.95, season: "all", spicy: "no", place: ["delivery", "takeout"], people: [2, 3, 4, 5] },
-        { name: "갈비", calories: 800, weather: ["sunny", "cloudy"], lastEaten: 0, preference: 0.9, season: "all", spicy: "no", place: ["delivery", "takeout"], people: [2, 3, 4, 5] }
-    ]
-};
-
-// 사용자 데이터 (로컬 스토리지에서 불러오기)
-let userData = {
-    lastEatenMenus: {},
-    preferences: {},
-    totalRecommendations: 0,
-    weatherHistory: []
-};
-
-// 운세 멘트 데이터베이스
-const fortuneMessages = {
-    positive: [
-        "오늘은 정말 좋은 하루가 될 것 같아요! 🌟",
-        "운이 좋은 날이에요! 선택한 메뉴가 완벽할 거예요! ✨",
-        "오늘 저녁은 특별한 맛이 기다리고 있어요! 🍽️",
-        "행운이 가득한 하루입니다! 맛있는 저녁 되세요! 🍀",
-        "오늘은 모든 것이 완벽하게 맞아떨어질 것 같아요! 🎯"
-    ],
-    neutral: [
-        "오늘은 평범하지만 안정적인 하루가 될 것 같아요! 😊",
-        "꾸준함이 최고의 맛을 만들어낼 거예요! 💪",
-        "오늘 저녁은 든든하고 맛있을 것 같아요! 🍚",
-        "차근차근 하나씩, 좋은 하루를 만들어가세요! 🌱",
-        "오늘은 조용하지만 만족스러운 하루가 될 거예요! 🤗"
-    ],
-    negative: [
-        "오늘은 조금 힘들 수 있지만, 맛있는 저녁으로 힘을 내세요! 💪",
-        "어려운 날이지만 좋은 음식이 위로가 될 거예요! 🤗",
-        "오늘은 조심스럽게, 하지만 맛있게 드세요! 🍽️",
-        "작은 기쁨이라도 찾아서 즐거운 저녁 되세요! 🌸",
-        "힘든 하루였지만, 저녁은 특별하게 보내세요! ✨"
-    ]
-};
-
-const adviceMessages = [
-    "오늘의 메뉴는 당신의 마음을 정확히 읽었어요!",
-    "날씨와 기분을 고려한 완벽한 선택이에요!",
-    "오랫동안 안 먹은 메뉴를 추천해드렸어요!",
-    "칼로리와 선호도를 모두 고려한 맞춤 추천입니다!",
-    "AI가 분석한 당신만의 특별한 메뉴예요!",
-    "오늘의 컨디션에 딱 맞는 메뉴를 찾았어요!",
-    "데이터 분석 결과, 이 메뉴가 최적의 선택이에요!"
-];
-
-// 현재 날씨 정보
-let currentWeather = {
-    temperature: 20,
-    condition: "sunny",
-    humidity: 50
-};
+// 전역 변수
+let newsData = [];
+let isLoading = false;
 
 // DOM 요소들
-const userInput = document.getElementById('userInput');
-const recommendBtn = document.getElementById('recommendBtn');
 const loadingSection = document.getElementById('loadingSection');
-const resultSection = document.getElementById('resultSection');
-const weatherText = document.getElementById('weatherText');
-const caloriePreference = document.getElementById('caloriePreference');
+const newsSection = document.getElementById('newsSection');
+const newsGrid = document.getElementById('newsGrid');
+const lastUpdate = document.getElementById('lastUpdate');
 
-// 설정 폼 요소들
-const recentMenusInput = document.getElementById('recentMenus');
-const weatherInput = document.getElementById('weatherInput');
-const spicyLevel = document.getElementById('spicyLevel');
-const peopleCount = document.getElementById('peopleCount');
-const eatingPlace = document.getElementById('eatingPlace');
-const mood = document.getElementById('mood');
-
-// 초기화
+// 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', function() {
-    loadUserData();
-    updateWeather();
-    setupEventListeners();
-    
-    // 5초마다 날씨 업데이트
-    setInterval(updateWeather, 300000); // 5분
+    console.log('DAYNEW 로드됨');
+    loadUserSettings();
+    showPlaceholderNews();
 });
 
-// 이벤트 리스너 설정
-function setupEventListeners() {
-    recommendBtn.addEventListener('click', handleRecommendation);
-    userInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            handleRecommendation();
-        }
-    });
-    
-    // 날씨 입력이 변경되면 자동으로 날씨 업데이트
-    weatherInput.addEventListener('change', function() {
-        const weatherOptions = {
-            'sunny': { condition: 'sunny', temp: 25, humidity: 40, icon: '☀️', text: '맑음 25°C' },
-            'cloudy': { condition: 'cloudy', temp: 20, humidity: 60, icon: '☁️', text: '흐림 20°C' },
-            'rainy': { condition: 'rainy', temp: 15, humidity: 80, icon: '🌧️', text: '비 15°C' },
-            'cold': { condition: 'cold', temp: 5, humidity: 70, icon: '❄️', text: '추움 5°C' },
-            'hot': { condition: 'hot', temp: 30, humidity: 50, icon: '🔥', text: '더움 30°C' }
-        };
+// 사용자 설정 로드
+function loadUserSettings() {
+    const savedSettings = localStorage.getItem('newsSettings');
+    if (savedSettings) {
+        const settings = JSON.parse(savedSettings);
         
-        const selectedWeather = weatherOptions[this.value];
-        if (selectedWeather) {
-            currentWeather = {
-                temperature: selectedWeather.temp,
-                condition: selectedWeather.condition,
-                humidity: selectedWeather.humidity
-            };
-            weatherText.textContent = `${selectedWeather.icon} ${selectedWeather.text}`;
+        // 체크박스 복원
+        if (settings.interests) {
+            settings.interests.forEach(interest => {
+                const checkbox = document.querySelector(`input[value="${interest}"]`);
+                if (checkbox) checkbox.checked = true;
+            });
         }
-    });
-}
-
-// 사용자 데이터 로드
-function loadUserData() {
-    const saved = localStorage.getItem('dinnerRecommendationData');
-    if (saved) {
-        userData = { ...userData, ...JSON.parse(saved) };
+        
+        // 키워드 복원
+        if (settings.keywords) {
+            document.getElementById('keywords').value = settings.keywords;
+        }
+        
     }
 }
 
-// 사용자 데이터 저장
-function saveUserData() {
-    localStorage.setItem('dinnerRecommendationData', JSON.stringify(userData));
-}
-
-// 날씨 업데이트 (실제로는 API를 사용해야 하지만, 여기서는 시뮬레이션)
-function updateWeather() {
-    const weathers = [
-        { condition: "sunny", temp: 25, humidity: 40, icon: "☀️", text: "맑음 25°C" },
-        { condition: "cloudy", temp: 20, humidity: 60, icon: "☁️", text: "흐림 20°C" },
-        { condition: "rainy", temp: 15, humidity: 80, icon: "🌧️", text: "비 15°C" },
-        { condition: "cold", temp: 5, humidity: 70, icon: "❄️", text: "추움 5°C" },
-        { condition: "hot", temp: 30, humidity: 50, icon: "🔥", text: "더움 30°C" }
-    ];
+// 사용자 설정 저장
+function saveUserSettings() {
+    const interests = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+        .map(checkbox => checkbox.value);
     
-    const randomWeather = weathers[Math.floor(Math.random() * weathers.length)];
-    currentWeather = {
-        temperature: randomWeather.temp,
-        condition: randomWeather.condition,
-        humidity: randomWeather.humidity
+    const settings = {
+        interests: interests,
+        keywords: document.getElementById('keywords').value
     };
     
-    weatherText.textContent = `${randomWeather.icon} ${randomWeather.text}`;
+    localStorage.setItem('newsSettings', JSON.stringify(settings));
 }
 
-// 메뉴 추천 처리
-async function handleRecommendation() {
-    const input = userInput.value.trim();
+// 뉴스 업데이트 함수
+async function updateNews() {
+    if (isLoading) return;
     
-    if (!input || !input.includes('추천')) {
-        alert('"오늘 저녁 메뉴 추천해줘"라고 입력해주세요!');
-        return;
-    }
+    isLoading = true;
+    saveUserSettings();
     
-    // 로딩 애니메이션 시작
+    // 로딩 화면 표시
     showLoading();
     
-    // 3초 후 결과 표시 (로또 머신 효과)
-    setTimeout(() => {
-        const recommendations = generateRecommendations();
-        displayResults(recommendations);
+    try {
+        // 사용자 설정 가져오기
+        const settings = getUserSettings();
+        
+        // 뉴스 데이터 생성 (실제로는 API 호출)
+        const news = await generateMockNews(settings);
+        
+        // 뉴스 표시
+        displayNews(news);
+        
+        // 마지막 업데이트 시간 저장
+        updateLastUpdateTime();
+        
+    } catch (error) {
+        console.error('뉴스 업데이트 오류:', error);
+        showError('뉴스를 불러오는 중 오류가 발생했습니다.');
+    } finally {
+        isLoading = false;
         hideLoading();
-    }, 3000);
+    }
+}
+
+// 사용자 설정 가져오기
+function getUserSettings() {
+    const interests = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+        .map(checkbox => checkbox.value);
+    
+    return {
+        interests: interests,
+        keywords: document.getElementById('keywords').value.split(',').map(k => k.trim()).filter(k => k)
+    };
 }
 
 // 로딩 화면 표시
 function showLoading() {
     loadingSection.style.display = 'block';
-    resultSection.style.display = 'none';
-    
-    // 로또 머신 애니메이션 시작
-    const balls = document.querySelectorAll('.ball');
-    balls.forEach((ball, index) => {
-        ball.style.animation = `spin ${2 + index * 0.2}s linear infinite`;
-    });
+    newsSection.style.display = 'none';
 }
 
 // 로딩 화면 숨기기
 function hideLoading() {
     loadingSection.style.display = 'none';
-    resultSection.style.display = 'block';
-    resultSection.classList.add('show');
+    newsSection.style.display = 'block';
 }
 
-// 메뉴 추천 생성
-function generateRecommendations() {
-    const caloriePref = caloriePreference.value;
-    
-    // 사용자 입력 정보 가져오기
-    const userInputs = getUserInputs();
-    
-    // 모든 메뉴 가져오기 (카테고리 구분 없이)
-    let availableMenus = [];
-    Object.values(menuDatabase).forEach(menus => {
-        availableMenus = availableMenus.concat(menus);
-    });
-    
-    // 칼로리 필터링
-    availableMenus = availableMenus.filter(menu => {
-        switch (caloriePref) {
-            case 'low': return menu.calories <= 500;
-            case 'medium': return menu.calories > 500 && menu.calories <= 800;
-            case 'high': return menu.calories > 800;
-            default: return true;
-        }
-    });
-    
-    // 사용자 입력 기반 필터링
-    availableMenus = availableMenus.filter(menu => {
-        // 매운맛 필터링
-        if (userInputs.spicyLevel === 'no' && menu.spicy !== 'no') return false;
-        if (userInputs.spicyLevel === 'mild' && (menu.spicy === 'high' || menu.spicy === 'extreme')) return false;
-        if (userInputs.spicyLevel === 'medium' && menu.spicy === 'extreme') return false;
-        
-        // 장소 필터링
-        if (!menu.place.includes(userInputs.eatingPlace)) return false;
-        
-        // 인원수 필터링
-        if (!menu.people.includes(parseInt(userInputs.peopleCount))) return false;
-        
-        return true;
-    });
-    
-    // 필터링된 메뉴가 없으면 모든 메뉴에서 다시 선택
-    if (availableMenus.length === 0) {
-        availableMenus = [];
-        Object.values(menuDatabase).forEach(menus => {
-            availableMenus = availableMenus.concat(menus);
+// 실제 뉴스 API 호출
+async function generateMockNews(settings) {
+    try {
+        // Flask 서버로 API 요청
+        const response = await fetch('http://localhost:5000/api/news', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(settings)
         });
-    }
-    
-    // 각 메뉴에 대해 점수 계산
-    const scoredMenus = availableMenus.map(menu => {
-        const score = calculateMenuScore(menu, userInputs);
-        return { ...menu, score };
-    });
-    
-    // 점수순으로 정렬하고 상위 3개 선택
-    const top3 = scoredMenus
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 3);
-    
-    // 사용자 데이터 업데이트
-    userData.totalRecommendations++;
-    top3.forEach(menu => {
-        userData.lastEatenMenus[menu.name] = new Date().toISOString();
-    });
-    saveUserData();
-    
-    return top3;
-}
-
-// 사용자 입력 정보 가져오기
-function getUserInputs() {
-    const recentMenus = recentMenusInput.value.split(',').map(menu => menu.trim()).filter(menu => menu);
-    
-    return {
-        recentMenus: recentMenus,
-        weather: weatherInput.value,
-        spicyLevel: spicyLevel.value,
-        peopleCount: peopleCount.value,
-        eatingPlace: eatingPlace.value,
-        mood: mood.value
-    };
-}
-
-// 메뉴 점수 계산
-function calculateMenuScore(menu, userInputs) {
-    let score = 0;
-    
-    // 1. 기본 선호도 점수 (0-30점)
-    score += menu.preference * 30;
-    
-    // 2. 최근에 먹은 메뉴 우선순위 (0-40점)
-    const recentMenus = userInputs.recentMenus;
-    if (recentMenus.length > 0) {
-        if (recentMenus.includes(menu.name)) {
-            // 최근에 먹은 메뉴는 점수 감점
-            score -= 20;
-        } else {
-            // 안 먹은 메뉴는 보너스
-            score += 20;
-        }
-    } else {
-        // 최근 메뉴 정보가 없으면 기존 로직 사용
-        const lastEaten = userData.lastEatenMenus[menu.name];
-        if (lastEaten) {
-            const daysSinceLastEaten = Math.floor((new Date() - new Date(lastEaten)) / (1000 * 60 * 60 * 24));
-            score += Math.min(daysSinceLastEaten * 2, 30);
-        } else {
-            score += 30; // 처음 먹는 메뉴는 보너스
-        }
-    }
-    
-    // 3. 날씨 적합성 (0-15점)
-    if (menu.weather.includes(userInputs.weather)) {
-        score += 15;
-    } else {
-        score += 5; // 부분 점수
-    }
-    
-    // 4. 매운맛 선호도 (0-10점)
-    const spicyScore = getSpicyScore(menu.spicy, userInputs.spicyLevel);
-    score += spicyScore;
-    
-    // 5. 기분에 따른 적합성 (0-10점)
-    const moodScore = getMoodScore(menu, userInputs.mood);
-    score += moodScore;
-    
-    // 6. 계절 적합성 (0-5점)
-    const currentSeason = getCurrentSeason();
-    if (menu.season === 'all' || menu.season === currentSeason) {
-        score += 5;
-    }
-    
-    // 7. 랜덤 요소 (0-10점) - 게임 요소
-    score += Math.random() * 10;
-    
-    return Math.round(score * 10) / 10; // 소수점 첫째자리까지
-}
-
-// 매운맛 점수 계산
-function getSpicyScore(menuSpicy, userSpicyLevel) {
-    const spicyLevels = { 'no': 0, 'mild': 1, 'medium': 2, 'high': 3, 'extreme': 4 };
-    const menuSpicyLevel = spicyLevels[menuSpicy] || 0;
-    const userSpicyLevelNum = spicyLevels[userSpicyLevel] || 0;
-    
-    const diff = Math.abs(menuSpicyLevel - userSpicyLevelNum);
-    return Math.max(0, 10 - diff * 2.5); // 차이가 클수록 점수 감점
-}
-
-// 기분에 따른 점수 계산
-function getMoodScore(menu, mood) {
-    const moodPreferences = {
-        'happy': { high: ['피자', '치킨', '초밥', '스테이크'], medium: ['불고기', '탕수육'] },
-        'normal': { high: ['비빔밥', '된장찌개', '우동'], medium: ['김치찌개', '짜장면'] },
-        'tired': { high: ['라면', '라멘', '우동'], medium: ['된장찌개', '순두부찌개'] },
-        'stressed': { high: ['떡볶이', '짬뽕', '마파두부'], medium: ['김치찌개', '닭볶음탕'] },
-        'celebrating': { high: ['스테이크', '초밥', '삼겹살'], medium: ['탕수육', '갈비탕'] }
-    };
-    
-    const preferences = moodPreferences[mood];
-    if (!preferences) return 5;
-    
-    if (preferences.high.includes(menu.name)) return 10;
-    if (preferences.medium.includes(menu.name)) return 7;
-    return 5;
-}
-
-// 현재 계절 계산
-function getCurrentSeason() {
-    const month = new Date().getMonth() + 1;
-    if (month >= 3 && month <= 5) return 'spring';
-    if (month >= 6 && month <= 8) return 'summer';
-    if (month >= 9 && month <= 11) return 'autumn';
-    return 'winter';
-}
-
-// 결과 표시
-function displayResults(recommendations) {
-    // 메뉴 정보 업데이트
-    recommendations.forEach((menu, index) => {
-        const menuCard = document.getElementById(`menu${index + 1}`);
-        const menuName = document.getElementById(`menu${index + 1}Name`);
-        const menuScore = document.getElementById(`menu${index + 1}Score`);
-        const menuReason = document.getElementById(`menu${index + 1}Reason`);
         
-        menuName.textContent = menu.name;
-        menuScore.textContent = `점수: ${menu.score}점`;
-        menuReason.textContent = generateMenuReason(menu);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         
-        // 카드 애니메이션
-        menuCard.style.opacity = '0';
-        menuCard.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-            menuCard.style.transition = 'all 0.6s ease';
-            menuCard.style.opacity = '1';
-            menuCard.style.transform = 'translateY(0)';
-        }, index * 200);
+        const data = await response.json();
+        
+        if (data.error) {
+            throw new Error(data.error);
+        }
+        
+        // API 응답을 프론트엔드 형식으로 변환
+        const articles = data.articles.map(article => ({
+            title: article.title,
+            summary: article.description || article.summary || '요약 정보가 없습니다.',
+            source: article.source,
+            time: formatTimeAgo(article.publishedAt),
+            category: article.category || 'general',
+            url: article.url,
+            imageUrl: article.urlToImage
+        }));
+        
+        return articles;
+        
+    } catch (error) {
+        console.error('API 호출 오류:', error);
+        
+        // API 오류 시 모의 데이터 반환
+        return getFallbackNews(settings);
+    }
+}
+
+// API 오류 시 사용할 모의 데이터
+function getFallbackNews(settings) {
+    const mockNews = [
+        {
+            title: "AI 기술의 새로운 돌파구, GPT-5 출시 예정",
+            summary: "OpenAI가 GPT-5의 출시를 발표했습니다. 이번 업데이트는 더욱 정확한 답변과 창의적인 콘텐츠 생성 능력을 제공할 것으로 예상됩니다.",
+            source: "TechCrunch",
+            time: "2시간 전",
+            category: "technology",
+            url: "#",
+            imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop"
+        },
+        {
+            title: "비트코인 가격, 24시간 만에 15% 상승",
+            summary: "암호화폐 시장에서 비트코인이 급등세를 보이고 있습니다. 기관 투자자들의 관심이 높아지면서 가격이 상승하고 있습니다.",
+            source: "CoinDesk",
+            time: "1시간 전",
+            category: "economy",
+            url: "#",
+            imageUrl: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400&h=200&fit=crop"
+        },
+        {
+            title: "프리미어리그, 맨체스터 시티 우승 확정",
+            summary: "맨체스터 시티가 프리미어리그에서 우승을 확정지었습니다. 펩 과르디올라 감독의 전술이 빛을 발했습니다.",
+            source: "ESPN",
+            time: "3시간 전",
+            category: "sports",
+            url: "#",
+            imageUrl: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=400&h=200&fit=crop"
+        },
+        {
+            title: "정부, AI 규제 법안 통과",
+            summary: "국회에서 AI 기술의 안전한 사용을 위한 규제 법안이 통과되었습니다. 이는 AI 기술의 발전과 안전성의 균형을 맞추기 위한 조치입니다.",
+            source: "연합뉴스",
+            time: "4시간 전",
+            category: "politics",
+            url: "#",
+            imageUrl: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=200&fit=crop"
+        },
+        {
+            title: "새로운 스마트폰 출시, 혁신적인 카메라 기능",
+            summary: "최신 스마트폰이 출시되며 혁신적인 카메라 기능으로 주목받고 있습니다. AI 기반 사진 보정 기능이 특히 인기를 끌고 있습니다.",
+            source: "The Verge",
+            time: "5시간 전",
+            category: "technology",
+            url: "#",
+            imageUrl: "https://images.unsplash.com/photo-1511707171631-5f897ff02aa9?w=400&h=200&fit=crop"
+        },
+        {
+            title: "K-POP 그룹, 글로벌 차트 1위 달성",
+            summary: "한국 대중음악 그룹이 미국 빌보드 차트에서 1위를 차지했습니다. 전 세계 팬들의 열렬한 지지가 이어지고 있습니다.",
+            source: "엔터테인먼트 뉴스",
+            time: "6시간 전",
+            category: "entertainment",
+            url: "#",
+            imageUrl: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=200&fit=crop"
+        },
+        {
+            title: "부동산 시장, 전국적으로 가격 상승세",
+            summary: "전국 부동산 시장에서 가격 상승세가 이어지고 있습니다. 수도권을 중심으로 거래량도 증가하고 있습니다.",
+            source: "부동산 뉴스",
+            time: "7시간 전",
+            category: "economy",
+            url: "#",
+            imageUrl: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=200&fit=crop"
+        },
+        {
+            title: "올림픽 준비, 국가대표 선수단 결성",
+            summary: "다가오는 올림픽을 위해 국가대표 선수단이 결성되었습니다. 각 종목별 최고 선수들이 참여합니다.",
+            source: "스포츠 뉴스",
+            time: "8시간 전",
+            category: "sports",
+            url: "#",
+            imageUrl: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400&h=200&fit=crop"
+        }
+    ];
+    
+    // 설정에 따른 필터링
+    let filteredNews = mockNews;
+    
+    if (settings.interests.length > 0) {
+        filteredNews = filteredNews.filter(news => 
+            settings.interests.includes(news.category)
+        );
+    }
+    
+    if (settings.keywords.length > 0) {
+        filteredNews = filteredNews.filter(news => 
+            settings.keywords.some(keyword => 
+                news.title.toLowerCase().includes(keyword.toLowerCase()) ||
+                news.summary.toLowerCase().includes(keyword.toLowerCase())
+            )
+        );
+    }
+    
+    return filteredNews.slice(0, 6);
+}
+
+// 시간 포맷팅 함수
+function formatTimeAgo(dateString) {
+    if (!dateString) return "시간 정보 없음";
+    
+    const now = new Date();
+    const articleDate = new Date(dateString);
+    const diffInMinutes = Math.floor((now - articleDate) / (1000 * 60));
+    
+    if (diffInMinutes < 1) return "방금 전";
+    if (diffInMinutes < 60) return `${diffInMinutes}분 전`;
+    
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    if (diffInHours < 24) return `${diffInHours}시간 전`;
+    
+    const diffInDays = Math.floor(diffInHours / 24);
+    return `${diffInDays}일 전`;
+}
+
+// 요약 길이 조정
+function adjustSummaryLength(summary, length) {
+    const sentences = summary.split('.').filter(s => s.trim());
+    
+    switch (length) {
+        case 'short':
+            return sentences[0] + '.';
+        case 'long':
+            return summary;
+        default: // medium
+            return sentences.slice(0, 2).join('.') + '.';
+    }
+}
+
+// 뉴스 표시
+function displayNews(news) {
+    newsGrid.innerHTML = '';
+    
+    if (news.length === 0) {
+        newsGrid.innerHTML = `
+            <div class="news-card placeholder">
+                <div class="news-icon">🔍</div>
+                <h3>관련 뉴스가 없습니다</h3>
+                <p>다른 키워드나 카테고리를 선택해보세요!</p>
+            </div>
+        `;
+        return;
+    }
+    
+    news.forEach((article, index) => {
+        const newsCard = createNewsCard(article, index);
+        newsGrid.appendChild(newsCard);
+    });
+}
+
+// 뉴스 카드 생성
+function createNewsCard(article, index) {
+    const card = document.createElement('div');
+    card.className = 'news-card';
+    card.style.animationDelay = `${index * 0.1}s`;
+    
+    const categoryEmoji = getCategoryEmoji(article.category);
+    const imageHtml = article.imageUrl ? 
+        `<div class="news-image">
+            <img src="${article.imageUrl}" alt="${article.title}" onerror="this.style.display='none'">
+        </div>` : '';
+    
+    card.innerHTML = `
+        ${imageHtml}
+        <div class="news-content">
+            <div class="news-icon">${categoryEmoji}</div>
+            <h3>${article.title}</h3>
+            <p>${article.summary}</p>
+            <div class="news-meta">
+                <span class="news-source">${article.source}</span>
+                <span class="news-time">${article.time}</span>
+            </div>
+            <div class="news-feedback">
+                <button class="feedback-btn like-btn" onclick="handleFeedback(event, 'like', ${index})">
+                    👍 <span class="count">0</span>
+                </button>
+                <button class="feedback-btn dislike-btn" onclick="handleFeedback(event, 'dislike', ${index})">
+                    👎 <span class="count">0</span>
+                </button>
+            </div>
+        </div>
+    `;
+    
+    // 클릭 이벤트 추가
+    card.addEventListener('click', () => {
+        if (article.url && article.url !== '#') {
+            window.open(article.url, '_blank');
+        }
     });
     
-    // AI 운세 및 멘트 생성
-    generateFortuneMessage(recommendations);
+    return card;
 }
 
-// 메뉴 추천 이유 생성
-function generateMenuReason(menu) {
-    const userInputs = getUserInputs();
-    
-    // 유쾌한 추천 멘트 데이터베이스 (메뉴에 맞게 수정)
-    const funReasons = {
-        // 기분별 추천
-        'happy': [
-            '기분이 좋을 때는 더 좋은 걸 먹어야죠!',
-            '좋은 기분에 완벽한 메뉴예요!',
-            '기분 좋은 날엔 이런 게 딱이죠!',
-            '좋은 하루의 마무리로 완벽해요!'
-        ],
-        'normal': [
-            '평범한 하루에 든든한 한 끼!',
-            '일상의 소소한 행복을 찾아보세요!',
-            '평범하지만 확실한 맛이에요!',
-            '꾸준한 맛으로 위로해드려요!'
-        ],
-        'tired': [
-            '피곤할 때는 이런 게 최고죠!',
-            '지친 몸과 마음을 달래줄 거예요!',
-            '피곤한 하루의 완벽한 마무리!',
-            '힘든 하루 끝에 든든한 위로!'
-        ],
-        'stressed': [
-            '스트레스 받을 때는 이런 게 최고예요!',
-            '스트레스 해소엔 이게 딱이에요!',
-            '힘든 하루의 달콤한 보상!',
-            '스트레스 날려버릴 맛있는 한 끼!'
-        ],
-        'celebrating': [
-            '축하할 때는 특별한 걸로!',
-            '기쁜 날엔 이런 게 딱이죠!',
-            '축하의 순간을 더욱 특별하게!',
-            '기쁜 하루의 완벽한 마무리!'
-        ]
+// 카테고리별 이모지
+function getCategoryEmoji(category) {
+    const emojis = {
+        technology: '💻',
+        economy: '💰',
+        sports: '⚽',
+        politics: '🏛️',
+        entertainment: '🎬'
     };
-    
-    // 메뉴별 특별한 멘트 (기분에 맞게 수정)
-    const menuSpecialReasons = {
-        '김치찌개': '한국인의 소울푸드! 따뜻한 위로가 필요할 때!',
-        '불고기': '달콤한 불고기로 마음을 달래보세요!',
-        '치킨': '치킨은 언제나 정답이에요! 치킨 앞에 무릎 꿇어요!',
-        '피자': '피자 한 조각으로 모든 게 해결돼요!',
-        '라면': '라면의 힘으로 하루를 버텨보세요!',
-        '초밥': '정갈한 초밥으로 마음을 정리해보세요!',
-        '떡볶이': '매운 떡볶이로 스트레스를 날려버려요!',
-        '짜장면': '짜장면 한 그릇의 위로!',
-        '라멘': '진한 국물이 몸과 마음을 따뜻하게!',
-        '스테이크': '고급스러운 스테이크로 특별한 하루를!',
-        '삼겹살': '삼겹살과 함께하는 행복한 시간!',
-        '족발': '족발 한 점으로 모든 고민이 사라져요!',
-        '햄버거': '햄버거 한 입에 모든 스트레스가!',
-        '보쌈': '신선한 보쌈으로 몸도 마음도 깨끗하게!',
-        '중화요리': '중화요리의 달콤함에 빠져보세요!',
-        '일식': '일본의 정갈함을 느껴보세요!',
-        '순대': '순대의 쫄깃함이 일상을 즐겁게!',
-        '닭볶음탕': '매콤달콤한 닭볶음탕으로 하루를 마무리!',
-        '갈비': '갈비의 부드러움이 마음을 달래줘요!',
-        '도시락': '든든한 도시락으로 하루를 시작해보세요!',
-        '파스타': '크림파스타의 부드러움이 마음을 달래줘요!',
-        '튀김': '바삭한 튀김의 쫄깃함이 일상을 즐겁게!',
-        '샐러드': '신선한 샐러드로 몸도 마음도 깨끗하게!',
-        '리조또': '부드러운 리조또로 마음을 달래보세요!',
-        '라면': '라면의 힘으로 하루를 버텨보세요!',
-        '김밥': '간편한 김밥으로 든든하게!',
-        '핫도그': '핫도그 한 입에 모든 스트레스가!',
-        '샌드위치': '부드러운 샌드위치로 마음을 달래보세요!',
-        '치킨': '치킨은 언제나 정답이에요! 치킨 앞에 무릎 꿇어요!'
-    };
-    
-    // 메뉴와 기분에 맞는 특별한 멘트 생성
-    const menuMoodReasons = {
-        // 스트레스 + 고기류
-        'stressed_meat': [
-            '스트레스 받을 때는 고기 앞으로!',
-            '바로 고기 먹으러 가는 거 어때요?',
-            '고기 한 점으로 모든 스트레스가!'
-        ],
-        // 스트레스 + 기타
-        'stressed_other': [
-            '스트레스 받을 때는 이런 게 최고예요!',
-            '스트레스 해소엔 이게 딱이에요!',
-            '힘든 하루의 달콤한 보상!'
-        ],
-        // 피곤함 + 따뜻한 음식
-        'tired_warm': [
-            '피곤할 때는 따뜻한 게 최고죠!',
-            '지친 몸과 마음을 달래줄 거예요!',
-            '피곤한 하루의 완벽한 마무리!'
-        ],
-        // 피곤함 + 기타
-        'tired_other': [
-            '피곤할 때는 이런 게 최고죠!',
-            '지친 몸과 마음을 달래줄 거예요!',
-            '힘든 하루 끝에 든든한 위로!'
-        ]
-    };
-    
-    // 메뉴별 특별한 멘트 선택
-    const specialReason = menuSpecialReasons[menu.name] || '완벽한 선택이에요!';
-    
-    // 기분과 메뉴에 맞는 멘트 선택
-    let moodReason;
-    if (userInputs.mood === 'stressed' && ['삼겹살', '갈비', '스테이크', '불고기', '닭볶음탕'].includes(menu.name)) {
-        const meatReasons = menuMoodReasons.stressed_meat;
-        moodReason = meatReasons[Math.floor(Math.random() * meatReasons.length)];
-    } else if (userInputs.mood === 'stressed') {
-        const otherReasons = menuMoodReasons.stressed_other;
-        moodReason = otherReasons[Math.floor(Math.random() * otherReasons.length)];
-    } else if (userInputs.mood === 'tired' && ['라면', '라멘', '김치찌개', '된장찌개', '순두부찌개'].includes(menu.name)) {
-        const warmReasons = menuMoodReasons.tired_warm;
-        moodReason = warmReasons[Math.floor(Math.random() * warmReasons.length)];
-    } else if (userInputs.mood === 'tired') {
-        const otherReasons = menuMoodReasons.tired_other;
-        moodReason = otherReasons[Math.floor(Math.random() * otherReasons.length)];
-    } else {
-        const moodReasons = funReasons[userInputs.mood] || funReasons['normal'];
-        moodReason = moodReasons[Math.floor(Math.random() * moodReasons.length)];
-    }
-    
-    // 두 멘트를 조합해서 반환
-    return `${moodReason} ${specialReason}`;
+    return emojis[category] || '📰';
 }
 
-// AI 운세 메시지 생성
-function generateFortuneMessage(recommendations) {
-    const fortuneText = document.getElementById('fortuneText');
-    const fortuneAdvice = document.getElementById('fortuneAdvice');
-    
-    // 전체 점수에 따라 운세 결정
-    const totalScore = recommendations.reduce((sum, menu) => sum + menu.score, 0);
-    const avgScore = totalScore / recommendations.length;
-    
-    let fortuneType;
-    if (avgScore >= 80) {
-        fortuneType = 'positive';
-    } else if (avgScore >= 60) {
-        fortuneType = 'neutral';
-    } else {
-        fortuneType = 'negative';
-    }
-    
-    // 운세 메시지 선택
-    const fortuneMessage = fortuneMessages[fortuneType][Math.floor(Math.random() * fortuneMessages[fortuneType].length)];
-    const adviceMessage = adviceMessages[Math.floor(Math.random() * adviceMessages.length)];
-    
-    // 타이핑 효과
-    typeText(fortuneText, fortuneMessage, 50);
-    setTimeout(() => {
-        typeText(fortuneAdvice, adviceMessage, 30);
-    }, 1000);
+// 플레이스홀더 뉴스 표시
+function showPlaceholderNews() {
+    newsGrid.innerHTML = `
+        <div class="news-card placeholder">
+            <div class="news-icon">📰</div>
+            <h3>뉴스를 불러오는 중...</h3>
+            <p>관심사 설정 후 '뉴스 업데이트' 버튼을 눌러주세요!</p>
+        </div>
+    `;
 }
 
-// 타이핑 효과
-function typeText(element, text, speed) {
-    element.textContent = '';
-    let i = 0;
-    const timer = setInterval(() => {
-        element.textContent += text.charAt(i);
-        i++;
-        if (i > text.length) {
-            clearInterval(timer);
-        }
-    }, speed);
+// 오류 메시지 표시
+function showError(message) {
+    newsGrid.innerHTML = `
+        <div class="news-card placeholder">
+            <div class="news-icon">❌</div>
+            <h3>오류가 발생했습니다</h3>
+            <p>${message}</p>
+        </div>
+    `;
 }
 
-// 다시 추천받기
-function resetRecommendation() {
-    resultSection.style.display = 'none';
-    resultSection.classList.remove('show');
-    userInput.value = '오늘 저녁 메뉴 추천해줘';
-    userInput.focus();
+// 마지막 업데이트 시간 업데이트
+function updateLastUpdateTime() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('ko-KR', {
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+    lastUpdate.textContent = timeString;
 }
 
-// 키워드 감지 및 자동 추천
-userInput.addEventListener('input', function() {
-    const input = this.value.toLowerCase();
-    if (input.includes('추천') && input.includes('메뉴')) {
-        recommendBtn.style.background = 'linear-gradient(45deg, #4ecdc4, #44a08d)';
-        recommendBtn.style.transform = 'scale(1.05)';
-    } else {
-        recommendBtn.style.background = 'linear-gradient(45deg, #ff6b6b, #ee5a24)';
-        recommendBtn.style.transform = 'scale(1)';
+// 키보드 이벤트 처리
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && e.target.id === 'keywords') {
+        updateNews();
     }
 });
 
-// 페이지 로드 시 환영 메시지
-window.addEventListener('load', function() {
+// 피드백 처리 함수
+function handleFeedback(event, type, index) {
+    event.stopPropagation(); // 카드 클릭 이벤트 방지
+    
+    const button = event.target.closest('.feedback-btn');
+    const countSpan = button.querySelector('.count');
+    let currentCount = parseInt(countSpan.textContent) || 0;
+    
+    // 피드백 데이터 저장
+    const feedbackKey = `news_feedback_${index}`;
+    const feedbackData = JSON.parse(localStorage.getItem(feedbackKey) || '{"like": 0, "dislike": 0}');
+    
+    if (type === 'like') {
+        feedbackData.like += 1;
+        button.style.backgroundColor = '#e8f5e8';
+        button.style.color = '#2e7d32';
+    } else {
+        feedbackData.dislike += 1;
+        button.style.backgroundColor = '#ffebee';
+        button.style.color = '#c62828';
+    }
+    
+    // 로컬 스토리지에 저장
+    localStorage.setItem(feedbackKey, JSON.stringify(feedbackData));
+    
+    // 카운트 업데이트
+    countSpan.textContent = feedbackData[type];
+    
+    // 애니메이션 효과
+    button.style.transform = 'scale(1.1)';
     setTimeout(() => {
-        console.log('🍽️ AI 저녁 메뉴 추천 시스템이 준비되었습니다!');
-        console.log('💡 "오늘 저녁 메뉴 추천해줘"라고 입력해보세요!');
-    }, 1000);
-});
+        button.style.transform = 'scale(1)';
+    }, 150);
+}
+
+// 키워드 검색 함수
+function searchByKeywords() {
+    const keywords = document.getElementById('keywords').value.trim();
+    if (!keywords) {
+        alert('검색할 키워드를 입력해주세요!');
+        return;
+    }
+    
+    if (isLoading) return;
+    
+    showLoading();
+    saveUserSettings();
+    
+    // 키워드만으로 검색 (카테고리 무시)
+    const searchSettings = {
+        interests: [], // 카테고리 비우기
+        keywords: keywords.split(',').map(k => k.trim()).filter(k => k)
+    };
+    
+    console.log('키워드 검색 설정:', searchSettings);
+    
+    // API 호출
+    fetch('http://localhost:5000/api/news', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(searchSettings)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('키워드 검색 결과:', data);
+        newsData = data.articles || [];
+        displayNews(newsData);
+        updateLastUpdateTime();
+        
+        // 검색 결과 표시
+        const newsHeader = document.querySelector('.news-header h2');
+        newsHeader.textContent = `🔍 "${keywords}" 검색 결과 (${newsData.length}개)`;
+    })
+    .catch(error => {
+        console.error('키워드 검색 오류:', error);
+        displayError('키워드 검색 중 오류가 발생했습니다.');
+    })
+    .finally(() => {
+        hideLoading();
+    });
+}
+
+// 자동 새로고침 (5분마다)
+setInterval(() => {
+    if (!isLoading && document.visibilityState === 'visible') {
+        updateNews();
+    }
+}, 5 * 60 * 1000); // 5분
