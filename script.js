@@ -450,7 +450,7 @@ function displayResults(recommendations) {
 function generateMenuReason(menu) {
     const userInputs = getUserInputs();
     
-    // 유쾌한 추천 멘트 데이터베이스
+    // 유쾌한 추천 멘트 데이터베이스 (메뉴에 맞게 수정)
     const funReasons = {
         // 기분별 추천
         'happy': [
@@ -472,10 +472,10 @@ function generateMenuReason(menu) {
             '힘든 하루 끝에 든든한 위로!'
         ],
         'stressed': [
-            '스트레스 받을 때는 고기 앞으로!',
-            '바로 고기 먹으러 가는 거 어때요?',
-            '스트레스 해소엔 이게 최고예요!',
-            '힘든 하루의 달콤한 보상!'
+            '스트레스 받을 때는 이런 게 최고예요!',
+            '스트레스 해소엔 이게 딱이에요!',
+            '힘든 하루의 달콤한 보상!',
+            '스트레스 날려버릴 맛있는 한 끼!'
         ],
         'celebrating': [
             '축하할 때는 특별한 걸로!',
@@ -485,7 +485,7 @@ function generateMenuReason(menu) {
         ]
     };
     
-    // 메뉴별 특별한 멘트
+    // 메뉴별 특별한 멘트 (기분에 맞게 수정)
     const menuSpecialReasons = {
         '김치찌개': '한국인의 소울푸드! 따뜻한 위로가 필요할 때!',
         '불고기': '달콤한 불고기로 마음을 달래보세요!',
@@ -506,18 +506,70 @@ function generateMenuReason(menu) {
         '순대': '순대의 쫄깃함이 일상을 즐겁게!',
         '닭볶음탕': '매콤달콤한 닭볶음탕으로 하루를 마무리!',
         '갈비': '갈비의 부드러움이 마음을 달래줘요!',
-        '도시락': '든든한 도시락으로 하루를 시작해보세요!'
+        '도시락': '든든한 도시락으로 하루를 시작해보세요!',
+        '파스타': '크림파스타의 부드러움이 마음을 달래줘요!',
+        '튀김': '바삭한 튀김의 쫄깃함이 일상을 즐겁게!',
+        '샐러드': '신선한 샐러드로 몸도 마음도 깨끗하게!',
+        '리조또': '부드러운 리조또로 마음을 달래보세요!',
+        '라면': '라면의 힘으로 하루를 버텨보세요!',
+        '김밥': '간편한 김밥으로 든든하게!',
+        '핫도그': '핫도그 한 입에 모든 스트레스가!',
+        '샌드위치': '부드러운 샌드위치로 마음을 달래보세요!',
+        '치킨': '치킨은 언제나 정답이에요! 치킨 앞에 무릎 꿇어요!'
     };
     
-    // 기분에 따른 멘트 선택
-    const moodReasons = funReasons[userInputs.mood] || funReasons['normal'];
-    const randomMoodReason = moodReasons[Math.floor(Math.random() * moodReasons.length)];
+    // 메뉴와 기분에 맞는 특별한 멘트 생성
+    const menuMoodReasons = {
+        // 스트레스 + 고기류
+        'stressed_meat': [
+            '스트레스 받을 때는 고기 앞으로!',
+            '바로 고기 먹으러 가는 거 어때요?',
+            '고기 한 점으로 모든 스트레스가!'
+        ],
+        // 스트레스 + 기타
+        'stressed_other': [
+            '스트레스 받을 때는 이런 게 최고예요!',
+            '스트레스 해소엔 이게 딱이에요!',
+            '힘든 하루의 달콤한 보상!'
+        ],
+        // 피곤함 + 따뜻한 음식
+        'tired_warm': [
+            '피곤할 때는 따뜻한 게 최고죠!',
+            '지친 몸과 마음을 달래줄 거예요!',
+            '피곤한 하루의 완벽한 마무리!'
+        ],
+        // 피곤함 + 기타
+        'tired_other': [
+            '피곤할 때는 이런 게 최고죠!',
+            '지친 몸과 마음을 달래줄 거예요!',
+            '힘든 하루 끝에 든든한 위로!'
+        ]
+    };
     
     // 메뉴별 특별한 멘트 선택
     const specialReason = menuSpecialReasons[menu.name] || '완벽한 선택이에요!';
     
+    // 기분과 메뉴에 맞는 멘트 선택
+    let moodReason;
+    if (userInputs.mood === 'stressed' && ['삼겹살', '갈비', '스테이크', '불고기', '닭볶음탕'].includes(menu.name)) {
+        const meatReasons = menuMoodReasons.stressed_meat;
+        moodReason = meatReasons[Math.floor(Math.random() * meatReasons.length)];
+    } else if (userInputs.mood === 'stressed') {
+        const otherReasons = menuMoodReasons.stressed_other;
+        moodReason = otherReasons[Math.floor(Math.random() * otherReasons.length)];
+    } else if (userInputs.mood === 'tired' && ['라면', '라멘', '김치찌개', '된장찌개', '순두부찌개'].includes(menu.name)) {
+        const warmReasons = menuMoodReasons.tired_warm;
+        moodReason = warmReasons[Math.floor(Math.random() * warmReasons.length)];
+    } else if (userInputs.mood === 'tired') {
+        const otherReasons = menuMoodReasons.tired_other;
+        moodReason = otherReasons[Math.floor(Math.random() * otherReasons.length)];
+    } else {
+        const moodReasons = funReasons[userInputs.mood] || funReasons['normal'];
+        moodReason = moodReasons[Math.floor(Math.random() * moodReasons.length)];
+    }
+    
     // 두 멘트를 조합해서 반환
-    return `${randomMoodReason} ${specialReason}`;
+    return `${moodReason} ${specialReason}`;
 }
 
 // AI 운세 메시지 생성
