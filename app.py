@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 # API 키 설정 (환경변수에서 가져오기)
-NEWS_API_KEY = os.getenv('NEWS_API_KEY', '0f9e0f1c6b6445c797a6aef7d9464568')
+NEWS_API_KEY = os.getenv('NEWS_API_KEY', 'your_news_api_key_here')
 GNEWS_API_KEY = os.getenv('GNEWS_API_KEY', 'your_gnews_api_key_here')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', 'your_openai_api_key_here')
 
